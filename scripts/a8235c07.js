@@ -1,0 +1,1 @@
+document.querySelectorAll(".oj").forEach((e=>{e.addEventListener("click",(function(){const e=document.querySelectorAll(".o_"),t=this.closest(".o_");if(t){const r="true"===t.getAttribute("aria-expanded");e.forEach((e=>e.setAttribute("aria-expanded","false"))),r||t.setAttribute("aria-expanded","true")}}))}));
