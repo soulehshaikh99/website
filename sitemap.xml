@@ -49,6 +49,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://syntaxtoolbox.com/tools/age-calculator</loc>
+    <lastmod>2024-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://syntaxtoolbox.com/tools/bmi-calculator</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
