@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){document.querySelector("#i").addEventListener("submit",(function(e){e.preventDefault();const t=document.querySelector("#o").value;/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(t)?window.location.href="/contact-us.html?email="+encodeURIComponent(t):alert("Please enter a valid email address.")}))}));
