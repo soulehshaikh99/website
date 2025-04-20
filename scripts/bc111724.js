@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelectorAll('input[name="mode"]'),t=document.querySelectorAll(".fh");function n(){const e=document.querySelector('input[name="mode"]:checked').value;t.forEach((t=>{t.hidden=t.getAttribute("data-mode")!==e}))}e.forEach((e=>{e.addEventListener("change",n)})),n()}));
