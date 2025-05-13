@@ -2,85 +2,85 @@
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://syntaxtoolbox.com</loc>
+    <loc>https://thegeeekytutor.netlify.app</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/about-us</loc>
+    <loc>https://thegeeekytutor.netlify.app/about-us</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/changelog</loc>
+    <loc>https://thegeeekytutor.netlify.app/changelog</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/contact-us</loc>
+    <loc>https://thegeeekytutor.netlify.app/contact-us</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/disclaimer</loc>
+    <loc>https://thegeeekytutor.netlify.app/disclaimer</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/privacy-policy</loc>
+    <loc>https://thegeeekytutor.netlify.app/privacy-policy</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/terms-of-use</loc>
+    <loc>https://thegeeekytutor.netlify.app/terms-of-use</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/age-calculator</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/age-calculator</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/bmi-calculator</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/bmi-calculator</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/csv-to-json</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/csv-to-json</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/json-to-csv</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/json-to-csv</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/percentage-calculator</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/percentage-calculator</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://syntaxtoolbox.com/tools/stock-average-calculator</loc>
+    <loc>https://thegeeekytutor.netlify.app/tools/stock-average-calculator</loc>
     <lastmod>2024-12-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
