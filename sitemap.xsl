@@ -97,9 +97,11 @@
 				}
 				.priority-medium {
 					color: #FEBE10;
+					font-weight: 600;
 				}
 				.priority-low {
 					color: #64748b;
+					font-weight: 600;
 				}
 			</style>
 		</head>
