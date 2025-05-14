@@ -1,142 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <xsl:output method="html" doctype-system="about:legacy-compat" indent="yes" />
-  
-  <xsl:template match="/">
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>XML Sitemap | Syntax Toolbox</title>
-        <style>
-          body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2d3748;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f8fafc;
-          }
-          h1 {
-            color: #1e40af;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-          }
-          .info {
-            background-color: #e0f2fe;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-          }
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            background-color: white;
-          }
-          th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-          }
-          th {
-            background-color: #3b82f6;
-            color: white;
-            font-weight: 600;
-          }
-          tr:hover {
-            background-color: #f0f9ff;
-          }
-          .footer {
-            margin-top: 25px;
-            font-size: 0.9em;
-            color: #64748b;
-            text-align: center;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
-          }
-          a {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-          }
-          a:hover {
-            text-decoration: underline;
-            color: #1d4ed8;
-          }
-          .priority-high {
-            color: #10b981;
-            font-weight: 600;
-          }
-          .priority-medium {
-            color: #f59e0b;
-          }
-          .priority-low {
-            color: #64748b;
-          }
-          @media (max-width: 768px) {
-            table {
-              font-size: 0.9em;
-            }
-            th, td {
-              padding: 8px 10px;
-            }
-          }
-        </style>
-      </head>
-      <body>
-        <h1>Syntax Toolbox Sitemap</h1>
-        <div class="info">
-          This sitemap contains <strong><xsl:value-of select="count(sitemap:urlset/sitemap:url)" /></strong> URLs. 
-          Last generated: <strong><xsl:value-of select="sitemap:urlset/sitemap:url[1]/sitemap:lastmod" /></strong>.
+<xsl:stylesheet
+        version="2.0"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <xsl:output method="html" indent="yes" encoding="UTF-8"/>
+
+    <xsl:template match="/">
+        <html>
+            <head>
+                <title>
+                    Sitemap
+                    <xsl:if test="sitemap:sitemapindex">Index</xsl:if>
+                </title>
+                <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+            </head>
+            <body class="ph3 pb3 mid-gray">
+                <header class="mw8 pv4 center">
+                    <div class="flex items-center">
+                        <h1 class="ma0 mr2 f2 blue">Sitemap</h1>
+                        <xsl:if test="sitemap:sitemapindex">
+                            <span class="dib mr2 ph3 pv1 f6 normal mid-gray bg-light-blue br-pill">Index</span>
+                        </xsl:if>
+                        <xsl:if test="sitemap:urlset/sitemap:url/image:image">
+                            <span class="dib mr2 ph3 pv1 f6 normal mid-gray bg-light-blue br-pill">Images</span>
+                        </xsl:if>
+                        <xsl:if test="sitemap:urlset/sitemap:url/video:video">
+                            <span class="dib mr2 ph3 pv1 f6 normal mid-gray bg-light-blue br-pill">Video</span>
+                        </xsl:if>
+                        <xsl:if test="sitemap:urlset/sitemap:url/xhtml:link">
+                            <span class="dib mr2 ph3 pv1 f6 normal mid-gray bg-light-blue br-pill">Xhtml</span>
+                        </xsl:if>
+                    </div>
+                    <h2 class="ma0 mt4 f4 normal">
+                        <xsl:choose>
+                            <xsl:when test="sitemap:sitemapindex">
+                                This index contains
+                                <strong class="blue"><xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/></strong>
+                                sitemaps.
+                            </xsl:when>
+                            <xsl:otherwise>
+                                This index contains
+                                <strong class="blue"><xsl:value-of select="count(sitemap:urlset/sitemap:url)"/></strong>
+                                URLs.
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </h2>
+                    <p>
+                        This is an XML sitemap, meant for consumption by search engines.<br/>
+                        You can find more information about XML sitemaps on <a href="https://sitemaps.org" class="link blue">sitemaps.org</a>.
+                    </p>
+                </header>
+
+                <xsl:apply-templates/>
+
+                <footer class="mw8 center pv4 tc">
+                    This is an open source <a href="https://github.com/pedroborges/xml-sitemap-stylesheet" title="Go to Github" class="link blue">XML Sitemap Stylesheet</a> created by <a href="https://pedroborg.es" title="Pedro Borges" class="link blue">pedroborg.es</a>
+                </footer>
+
+            </body>
+        </html>
+    </xsl:template>
+
+
+    <xsl:template match="sitemap:sitemapindex">
+        <div class="mw8 center">
+            <div class="overflow-auto">
+                <table class="w-100 f6 b--silver ba bw1" cellspacing="0">
+                    <thead class="bg-silver">
+                        <tr>
+                            <th class="pa3 fw6 tl dark-gray" style="width:60px"></th>
+                            <th class="pa3 fw6 tl dark-gray">URL</th>
+                            <th class="pa3 fw6 tr dark-gray" style="width:200px">Last Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody class="lh-copy bg-near-white">
+                    <xsl:for-each select="sitemap:sitemap">
+                        <tr class="hover-bg-white">
+                            <xsl:variable name="loc">
+                                <xsl:value-of select="sitemap:loc"/>
+                            </xsl:variable>
+                            <xsl:variable name="pno">
+                                <xsl:value-of select="position()"/>
+                            </xsl:variable>
+                            <td class="pa3 tc b bb b--silver">
+                                <xsl:value-of select="$pno"/>
+                            </td>
+                            <td class="pa3 b bb b--silver">
+                                <a href="{$loc}" class="link blue">
+                                    <xsl:value-of select="sitemap:loc"/>
+                                </a>
+                            </td>
+                            <xsl:if test="sitemap:lastmod">
+                            <td class="pa3 tr bb b--silver">
+                                <xsl:value-of select="concat(substring(sitemap:lastmod, 0, 11), concat(' ', substring(sitemap:lastmod, 12, 5)), concat(' ', substring(sitemap:lastmod, 20, 6)))"/>
+                            </td>
+                            </xsl:if>
+                            <xsl:apply-templates/>
+                        </tr>
+                    </xsl:for-each>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>URL</th>
-              <th>Last Modified</th>
-              <th>Change Frequency</th>
-              <th>Priority</th>
-            </tr>
-          </thead>
-          <tbody>
-            <xsl:for-each select="sitemap:urlset/sitemap:url">
-              <tr>
-                <td>
-                  <a href="{sitemap:loc}">
-                    <xsl:value-of select="sitemap:loc" />
-                  </a>
-                </td>
-                <td>
-                  <xsl:value-of select="sitemap:lastmod" />
-                </td>
-                <td>
-                  <xsl:value-of select="sitemap:changefreq" />
-                </td>
-                <td>
-                  <xsl:attribute name="class">
-                    <xsl:choose>
-                      <xsl:when test="sitemap:priority >= 0.9">priority-high</xsl:when>
-                      <xsl:when test="sitemap:priority >= 0.5">priority-medium</xsl:when>
-                      <xsl:otherwise>priority-low</xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:attribute>
-                  <xsl:value-of select="sitemap:priority" />
-                </td>
-              </tr>
-            </xsl:for-each>
-          </tbody>
-        </table>
-        <div class="footer">
-          Generated by <a href="https://thegeeekytutor.netlify.app" target="_blank">Syntax Toolbox</a> | 
-          <a href="https://thegeeekytutor.netlify.app/tools" target="_blank">Tools</a> | 
-          <a href="https://www.sitemaps.org" target="_blank">About Sitemaps</a>
+    </xsl:template>
+
+    <xsl:template match="sitemap:urlset">
+        <div class="mw8 center">
+            <div class="overflow-auto">
+                <table class="w-100 f6 b--silver ba bw1" cellspacing="0">
+                    <thead class="bg-silver">
+                        <tr>
+                            <th class="pa3 fw6 tl dark-gray" style="width:60px"></th>
+                            <th class="pa3 fw6 tl dark-gray">URL</th>
+                            <xsl:if test="sitemap:url/sitemap:changefreq">
+                            <th class="pa3 fw6 tr dark-gray" style="width:130px">Change Freq.</th>
+                            </xsl:if>
+                            <xsl:if test="sitemap:url/sitemap:priority">
+                            <th class="pa3 fw6 tr dark-gray" style="width:90px">Priority</th>
+                            </xsl:if>
+                            <xsl:if test="sitemap:url/sitemap:lastmod">
+                            <th class="pa3 fw6 tr dark-gray" style="width:200px">Last Modified</th>
+                            </xsl:if>
+                        </tr>
+                    </thead>
+                    <tbody class="lh-copy bg-near-white">
+                    <xsl:for-each select="sitemap:url">
+                        <tr class="hover-bg-white">
+                            <xsl:variable name="loc">
+                                <xsl:value-of select="sitemap:loc"/>
+                            </xsl:variable>
+                            <xsl:variable name="pno">
+                                <xsl:value-of select="position()"/>
+                            </xsl:variable>
+                            <td class="pa3 tc b bb b--silver">
+                                <xsl:value-of select="$pno"/>
+                            </td>
+                            <td class="pa3 bb b--silver">
+                                <p>
+                                    <a href="{$loc}" class="link blue">
+                                        <xsl:value-of select="sitemap:loc"/>
+                                    </a>
+                                </p>
+                                <xsl:apply-templates select="xhtml:*"/>
+                                <xsl:apply-templates select="image:*"/>
+                                <xsl:apply-templates select="video:*"/>
+                            </td>
+                            <xsl:apply-templates select="sitemap:changefreq"/>
+                            <xsl:apply-templates select="sitemap:priority"/>
+                            <xsl:if test="sitemap:lastmod">
+                            <td class="pa3 tr bb b--silver">
+                                <xsl:value-of select="concat(substring(sitemap:lastmod, 0, 11), concat(' ', substring(sitemap:lastmod, 12, 5)), concat(' ', substring(sitemap:lastmod, 20, 6)))"/>
+                            </td>
+                            </xsl:if>
+                        </tr>
+                    </xsl:for-each>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </body>
-    </html>
-  </xsl:template>
+    </xsl:template>
+
+    <xsl:template match="sitemap:loc|sitemap:lastmod|image:loc|image:caption|video:*">
+    </xsl:template>
+
+    <xsl:template match="sitemap:changefreq|sitemap:priority">
+        <td class="pa3 tr bb b--silver">
+            <xsl:apply-templates/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="xhtml:link">
+        <xsl:variable name="altloc">
+            <xsl:value-of select="@href"/>
+        </xsl:variable>
+        <p>
+            <strong>Xhtml: </strong>
+            <a href="{$altloc}" class="mr2 link blue">
+                <xsl:value-of select="@href"/>
+            </a>
+
+            <xsl:if test="@hreflang">
+                <small class="dib mr2 ph1 pv1 tracked lh-solid white bg-silver br-pill">
+                    <xsl:value-of select="@hreflang"/>
+                </small>
+            </xsl:if>
+
+            <xsl:if test="@rel">
+                <small class="dib mr2 ph2 pv1 tracked lh-solid white bg-silver br-pill">
+                    <xsl:value-of select="@rel"/>
+                </small>
+            </xsl:if>
+
+            <xsl:if test="@media">
+                <small class="dib mr2 ph2 pv1 tracked lh-solid white bg-silver br-pill">
+                    <xsl:value-of select="@media"/>
+                </small>
+            </xsl:if>
+        </p>
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="image:image">
+        <xsl:variable name="loc">
+            <xsl:value-of select="image:loc"/>
+        </xsl:variable>
+        <p>
+            <strong>Image: </strong>
+            <a href="{$loc}" class="mr2 link blue">
+                <xsl:value-of select="image:loc"/>
+            </a>
+            <xsl:if test="image:caption">
+                <span class="i gray">
+                    <xsl:value-of select="image:caption"/>
+                </span>
+            </xsl:if>
+            <xsl:apply-templates/>
+        </p>
+    </xsl:template>
+
+    <xsl:template match="video:video">
+        <xsl:variable name="loc">
+            <xsl:choose>
+                <xsl:when test="video:player_loc != ''">
+                    <xsl:value-of select="video:player_loc"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="video:content_loc"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="thumb_loc">
+            <xsl:value-of select="video:thumbnail_loc"/>
+        </xsl:variable>
+        <p>
+            <strong>Video: </strong>
+            <a href="{$loc}" class="mr2 link blue">
+                <xsl:choose>
+                    <xsl:when test="video:player_loc != ''">
+                        <xsl:value-of select="video:player_loc"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="video:content_loc"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </a>
+            <a href="{$thumb_loc}" class="dib mr2 ph2 pv1 tracked lh-solid link white bg-silver hover-bg-blue br-pill">
+                thumb
+            </a>
+            <xsl:if test="video:title">
+                <span class="i gray">
+                    <xsl:value-of select="video:title"/>
+                </span>
+            </xsl:if>
+            <xsl:apply-templates/>
+        </p>
+    </xsl:template>
+
 </xsl:stylesheet>
