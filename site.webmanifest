@@ -1,0 +1,21 @@
+{
+    "name": "Syntax Toolbox - Free Online Tools for Productivity and Beyond",
+    "short_name": "Syntax Toolbox",
+    "description": "Syntax Toolbox offers a wide range of free online tools for developers, finance enthusiasts, and health-conscious users. Simplify your tasks with easy-to-use calculators, file converters, and more.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

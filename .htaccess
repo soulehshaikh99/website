@@ -1,0 +1,37 @@
+RewriteEngine on
+
+# Redirect non-www to www
+RewriteCond %{HTTP_HOST} ^example.com [NC]
+RewriteRule ^(.*)$ http://www.example.com/$1 [L,R=301]
+
+# Prevent access to hidden files (starting with a dot)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Block direct access to robots.txt file
+<FilesMatch "^robots.txt$">
+    Require all denied
+</FilesMatch>
+
+# Redirect /tools, /tools/, /tools/index, /tools/index.html to homepage (Temporary Redirect)
+RewriteCond %{REQUEST_URI} ^/tools(/|/index(\.html)?)?$ [NC]
+RewriteRule ^ / [R=302,L]
+
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+
+# Block directory listing
+Options -Indexes
+
+# Custom 403 Error Page
+ErrorDocument 403 /403.html
+
+# Custom 404 Error Page
+ErrorDocument 404 /404.html
+
+# Custom 500 Error Page
+ErrorDocument 500 /500.html
