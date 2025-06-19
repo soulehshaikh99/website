@@ -1,1 +1,0 @@
-function $(){}$.qs=function(e){return document.querySelector(e)},$.qsa=function(e){return document.querySelectorAll(e)};
